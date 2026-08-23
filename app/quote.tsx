@@ -1,12 +1,6 @@
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import {
-    Alert,
-    ScrollView,
-    StyleSheet,
-    Text, TextInput,
-    TouchableOpacity,
-} from "react-native";
+import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
 
 export default function QuoteScreen() {
   const { title } = useLocalSearchParams<{ title: string }>();

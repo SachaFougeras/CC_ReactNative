@@ -3,8 +3,8 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
-import EmailForm from "../components/EmailForm";
-import ErrorBoundary from "../components/ErrorBoundary";
+import EmailForm from "../../components/EmailForm";
+import ErrorBoundary from "../../components/ErrorBoundary";
 
 export default function DetailScreen() {
   const { slug } = useLocalSearchParams();
@@ -15,19 +15,19 @@ export default function DetailScreen() {
   useEffect(() => {
     axios
       .get(`https://dawan.org/public/training/show/${slug}`)
-      .then((res) => setTraining(res.data));
-    console.log("DetailScreen mounted, slug=", slug);
+      .then((res) => setTraining(res.data))
+      .catch((err) => console.log(err));
   }, [slug]);
 
   return (
     <ErrorBoundary>
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={[styles.container, { paddingTop: Math.max(insets.top, 16) }]}>
-            <View style={styles.header}>
-              <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-                <Text style={styles.backText}>← Retour</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={styles.header}>
+            <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+              <Text style={styles.backText}>← Retour</Text>
+            </TouchableOpacity>
+          </View>
 
           {!training ? (
             <Text>Chargement...</Text>
@@ -47,12 +47,12 @@ export default function DetailScreen() {
 
 const styles = StyleSheet.create({
   container: { padding: 16 },
-  title: { fontSize: 20, fontWeight: "700", marginBottom: 8 },
-  description: { marginBottom: 12 },
-  section: { marginTop: 12, marginBottom: 8, fontWeight: "600" },
   header: { marginBottom: 12, alignSelf: "stretch" },
   backButton: { backgroundColor: "#eee", paddingVertical: 6, paddingHorizontal: 10, borderRadius: 6, alignSelf: "flex-start" },
   backText: { fontWeight: "600" },
+  title: { fontSize: 20, fontWeight: "700", marginBottom: 8 },
+  description: { marginBottom: 12 },
+  section: { marginTop: 12, marginBottom: 8, fontWeight: "600" },
 });
 
 function stripHtml(html?: string) {
