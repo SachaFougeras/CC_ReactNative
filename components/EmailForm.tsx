@@ -70,7 +70,7 @@ export default function EmailForm({ initialRecipient = "", initialSubject = "", 
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Destinataire</Text>
-      <TextInput style={styles.input} value={recipient} onChangeText={setRecipient} keyboardType="email-address" autoCapitalize="none" />
+      <TextInput style={styles.input} value={recipient} editable={false} onChangeText={setRecipient} keyboardType="email-address" autoCapitalize="none" />
       <Text style={styles.label}>Sujet</Text>
       <TextInput style={styles.input} value={subject} onChangeText={setSubject} />
       <Text style={styles.label}>Message</Text>

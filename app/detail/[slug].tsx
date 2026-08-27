@@ -115,6 +115,7 @@ export default function DetailScreen() {
               </Text>
 
               <EmailForm
+                initialRecipient="yannis.billon1@gmail.com"
                 initialSubject={`Info: ${training.title}`}
                 initialBody=""
               />
